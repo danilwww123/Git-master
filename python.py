@@ -64,3 +64,41 @@ def load_notes():
             notes = json.load(json_file)
         return notes
     return []
+# Основной цикл программы
+def main():
+    notes = load_notes()
+
+    while True:
+        print("\nВыберите действие:")
+        print("1. Создать заметку")
+        print("2. Список заметок")
+        print("3. Прочитать заметку")
+        print("4. Редактировать заметку")
+        print("5. Удалить заметку")
+        print("6. Выйти из программы")
+        choice = input("Введите номер действия: ")
+
+        if choice == "1":
+            title = input("Введите заголовок заметки: ")
+            body = input("Введите текст заметки: ")
+            create_note(notes, title, body)
+        elif choice == "2":
+            list_notes(notes)
+        elif choice == "3":
+            note_id = int(input("Введите идентификатор заметки для чтения: "))
+            read_note(notes, note_id)
+        elif choice == "4":
+            note_id = int(input("Введите идентификатор заметки для редактирования: "))
+            new_title = input("Введите новый заголовок: ")
+            new_body = input("Введите новый текст: ")
+            edit_note(notes, note_id, new_title, new_body)
+        elif choice == "5":
+            note_id = int(input("Введите идентификатор заметки для удаления: "))
+            delete_note(notes, note_id)
+        elif choice == "6":
+            break
+        else:
+            print("Неправильный выбор. Попробуйте снова.")
+
+if __name__ == "__main__":
+    main()
