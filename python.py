@@ -15,6 +15,7 @@ def create_note(notes, title, body):
     notes.append(new_note)
     save_notes(notes)
     print(f"Заметка '{title}' успешно создана.")
+
 # Функция для чтения списка заметок
 def list_notes(notes):
     if notes:
@@ -31,7 +32,8 @@ def read_note(notes, note_id):
             print(f"Заметка '{note['title']}' (Дата: {note['timestamp']}):\n{note['body']}")
             return
     print(f"Заметка с идентификатором '{note_id}' не найдена.")
-    # Функция для редактирования заметки по идентификатору
+
+# Функция для редактирования заметки по идентификатору
 def edit_note(notes, note_id, new_title, new_body):
     for note in notes:
         if note["id"] == note_id:
@@ -42,7 +44,8 @@ def edit_note(notes, note_id, new_title, new_body):
             print(f"Заметка '{new_title}' успешно отредактирована.")
             return
     print(f"Заметка с идентификатором '{note_id}' не найдена.")
-    # Функция для удаления заметки по идентификатору
+
+# Функция для удаления заметки по идентификатору
 def delete_note(notes, note_id):
     for note in notes:
         if note["id"] == note_id:
@@ -64,6 +67,7 @@ def load_notes():
             notes = json.load(json_file)
         return notes
     return []
+
 # Основной цикл программы
 def main():
     notes = load_notes()
