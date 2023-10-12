@@ -42,3 +42,25 @@ def edit_note(notes, note_id, new_title, new_body):
             print(f"Заметка '{new_title}' успешно отредактирована.")
             return
     print(f"Заметка с идентификатором '{note_id}' не найдена.")
+    # Функция для удаления заметки по идентификатору
+def delete_note(notes, note_id):
+    for note in notes:
+        if note["id"] == note_id:
+            notes.remove(note)
+            save_notes(notes)
+            print(f"Заметка '{note['title']}' успешно удалена.")
+            return
+    print(f"Заметка с идентификатором '{note_id}' не найдена.")
+
+# Функция для сохранения заметок в JSON файл
+def save_notes(notes):
+    with open("notes.json", "w") as json_file:
+        json.dump(notes, json_file)
+
+# Функция для загрузки заметок из JSON файла
+def load_notes():
+    if os.path.exists("notes.json"):
+        with open("notes.json", "r") as json_file:
+            notes = json.load(json_file)
+        return notes
+    return []
