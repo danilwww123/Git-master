@@ -31,3 +31,14 @@ def read_note(notes, note_id):
             print(f"Заметка '{note['title']}' (Дата: {note['timestamp']}):\n{note['body']}")
             return
     print(f"Заметка с идентификатором '{note_id}' не найдена.")
+    # Функция для редактирования заметки по идентификатору
+def edit_note(notes, note_id, new_title, new_body):
+    for note in notes:
+        if note["id"] == note_id:
+            note["title"] = new_title
+            note["body"] = new_body
+            note["timestamp"] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            save_notes(notes)
+            print(f"Заметка '{new_title}' успешно отредактирована.")
+            return
+    print(f"Заметка с идентификатором '{note_id}' не найдена.")
